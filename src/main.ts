@@ -15,6 +15,11 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  app.enableCors({
+    origin: '*', // O especifica la URL del frontend si es más seguro
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
   app.useGlobalFilters(new RpcCustomExceptionFilter());
   await app.listen(envs.port);
 
